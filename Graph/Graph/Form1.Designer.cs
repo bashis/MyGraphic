@@ -40,8 +40,10 @@
             this.angleLabelA = new System.Windows.Forms.ToolStripStatusLabel();
             this.angleLabelB = new System.Windows.Forms.ToolStripStatusLabel();
             this.angleLabelC = new System.Windows.Forms.ToolStripStatusLabel();
-            this.pictureBox1 = new Graph.DoubleBufferedPictureBox();
             this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.pointsCB = new System.Windows.Forms.CheckBox();
+            this.pictureBox1 = new Graph.DoubleBufferedPictureBox();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -49,15 +51,13 @@
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button1.Enabled = false;
-            this.button1.Location = new System.Drawing.Point(67, 536);
+            this.button1.Location = new System.Drawing.Point(83, 534);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(111, 23);
             this.button1.TabIndex = 1;
             this.button1.Text = "DRAAAAAAW";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            this.button1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.button1_MouseDown);
             // 
             // graphCB
             // 
@@ -65,8 +65,7 @@
             this.graphCB.AutoSize = true;
             this.graphCB.Checked = true;
             this.graphCB.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.graphCB.Enabled = false;
-            this.graphCB.Location = new System.Drawing.Point(184, 540);
+            this.graphCB.Location = new System.Drawing.Point(200, 538);
             this.graphCB.Name = "graphCB";
             this.graphCB.Size = new System.Drawing.Size(55, 17);
             this.graphCB.TabIndex = 2;
@@ -79,7 +78,7 @@
             this.netCB.AutoSize = true;
             this.netCB.Checked = true;
             this.netCB.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.netCB.Location = new System.Drawing.Point(245, 540);
+            this.netCB.Location = new System.Drawing.Point(261, 538);
             this.netCB.Name = "netCB";
             this.netCB.Size = new System.Drawing.Size(87, 17);
             this.netCB.TabIndex = 3;
@@ -92,7 +91,7 @@
             this.coordCB.AutoSize = true;
             this.coordCB.Checked = true;
             this.coordCB.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.coordCB.Location = new System.Drawing.Point(338, 540);
+            this.coordCB.Location = new System.Drawing.Point(354, 538);
             this.coordCB.Name = "coordCB";
             this.coordCB.Size = new System.Drawing.Size(82, 17);
             this.coordCB.TabIndex = 4;
@@ -122,7 +121,7 @@
             // 
             this.button2.Location = new System.Drawing.Point(12, 12);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(49, 45);
+            this.button2.Size = new System.Drawing.Size(65, 45);
             this.button2.TabIndex = 10;
             this.button2.Text = "Colors";
             this.button2.UseVisualStyleBackColor = true;
@@ -132,7 +131,7 @@
             // 
             this.button3.Location = new System.Drawing.Point(12, 63);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(49, 45);
+            this.button3.Size = new System.Drawing.Size(65, 45);
             this.button3.TabIndex = 13;
             this.button3.Text = "Free";
             this.button3.UseVisualStyleBackColor = true;
@@ -155,18 +154,63 @@
             this.angleLabelA.Name = "angleLabelA";
             this.angleLabelA.Size = new System.Drawing.Size(13, 17);
             this.angleLabelA.Text = "a";
+            this.angleLabelA.Click += new System.EventHandler(this.angleLabelA_Click);
+            this.angleLabelA.MouseEnter += new System.EventHandler(this.angleLabelA_MouseEnter);
+            this.angleLabelA.MouseLeave += new System.EventHandler(this.angleLabelA_MouseLeave);
+            this.angleLabelA.MouseHover += new System.EventHandler(this.angleLabelA_MouseHover);
             // 
             // angleLabelB
             // 
             this.angleLabelB.Name = "angleLabelB";
             this.angleLabelB.Size = new System.Drawing.Size(14, 17);
             this.angleLabelB.Text = "b";
+            this.angleLabelB.Click += new System.EventHandler(this.angleLabelB_Click);
+            this.angleLabelB.MouseEnter += new System.EventHandler(this.angleLabelB_MouseEnter);
+            this.angleLabelB.MouseLeave += new System.EventHandler(this.angleLabelB_MouseLeave);
+            this.angleLabelB.MouseHover += new System.EventHandler(this.angleLabelB_MouseHover);
             // 
             // angleLabelC
             // 
             this.angleLabelC.Name = "angleLabelC";
             this.angleLabelC.Size = new System.Drawing.Size(13, 17);
             this.angleLabelC.Text = "c";
+            this.angleLabelC.Click += new System.EventHandler(this.angleLabelC_Click);
+            this.angleLabelC.MouseEnter += new System.EventHandler(this.angleLabelC_MouseEnter);
+            this.angleLabelC.MouseLeave += new System.EventHandler(this.angleLabelC_MouseLeave);
+            this.angleLabelC.MouseHover += new System.EventHandler(this.angleLabelC_MouseHover);
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(12, 485);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(65, 45);
+            this.button4.TabIndex = 15;
+            this.button4.Text = "Save";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(12, 114);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(65, 45);
+            this.button5.TabIndex = 16;
+            this.button5.Text = "Restore";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // pointsCB
+            // 
+            this.pointsCB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.pointsCB.AutoSize = true;
+            this.pointsCB.Checked = true;
+            this.pointsCB.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.pointsCB.Location = new System.Drawing.Point(442, 538);
+            this.pointsCB.Name = "pointsCB";
+            this.pointsCB.Size = new System.Drawing.Size(55, 17);
+            this.pointsCB.TabIndex = 17;
+            this.pointsCB.Text = "Points";
+            this.pointsCB.UseVisualStyleBackColor = true;
             // 
             // pictureBox1
             // 
@@ -175,29 +219,21 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.BackColor = System.Drawing.Color.White;
             this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox1.Location = new System.Drawing.Point(67, 12);
+            this.pictureBox1.Location = new System.Drawing.Point(83, 12);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(727, 518);
+            this.pictureBox1.Size = new System.Drawing.Size(711, 518);
             this.pictureBox1.TabIndex = 6;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(12, 485);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(49, 45);
-            this.button4.TabIndex = 15;
-            this.button4.Text = "Save";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(806, 593);
+            this.Controls.Add(this.pointsCB);
+            this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.button3);
@@ -212,7 +248,6 @@
             this.Name = "Form1";
             this.Text = "FUCKING Graph Plotter";
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.Scroll += new System.Windows.Forms.ScrollEventHandler(this.Form1_Scroll);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -237,6 +272,8 @@
         private System.Windows.Forms.ToolStripStatusLabel angleLabelB;
         private System.Windows.Forms.ToolStripStatusLabel angleLabelC;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.CheckBox pointsCB;
     }
 }
 

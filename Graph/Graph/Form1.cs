@@ -26,17 +26,21 @@ namespace Graph
 
 
         //double a=0, b=225, c=45;
+        void RestoreAngles()
+        {
+            a = 0;
+            b = -90;
+            c = 0;
+        }
         public static Color graphColor = Color.Red, netColor = Color.DeepPink, coordColor = Color.DimGray;
         private void Form1_Load(object sender, EventArgs e)
         {
-            a = 0;
-            b = 45;
-            c = 225;
+            RestoreAngles();
             SpinTimer.Interval = 10;
             SpinTimer.Tick += new EventHandler(SpinTimer_Tick);
         }
         #region angles
-        private double angleA = 0;
+        private double angleA;
 
         public double a
         {
@@ -47,7 +51,7 @@ namespace Graph
                 angleLabelA.Text = "a=" + (value%360).ToString();
             }
         }
-        private double angleB = 255;
+        private double angleB;
 
         public double b
         {
@@ -58,7 +62,7 @@ namespace Graph
                 angleLabelB.Text = "b=" + (value%360).ToString();
             }
         }
-        private double angleC = 45;
+        private double angleC;
 
         public double c
         {
@@ -121,7 +125,7 @@ namespace Graph
         {
             try
             {
-                return Math.Sqrt( x * x + y * y);
+                return Math.Sqrt(10000- x * x -y * y);
             }
             catch (Exception)
             {
@@ -204,7 +208,7 @@ namespace Graph
                 {
                     // howmuchisdone++;
                     Point newPoint = GetPoint(p, q);
-                    if (!(newPoint.X < -10000 || newPoint.Y < -10000))
+                    if (!(newPoint.X <= -x0 || newPoint.Y <= -y0 || newPoint.X>pictureBox1.Width || newPoint.Y>pictureBox1.Height ))
                     {
 
                         structPoints[pcnt, qcnt] = new Point(x0 + newPoint.X, y0 - newPoint.Y);
@@ -215,13 +219,14 @@ namespace Graph
                 }
                 pcnt++;
             }
+
             List<Point> pointArr = new List<Point>();
             for (int i = 0; i < structPoints.GetLength(0) - 1; i++)
             {
                 pointArr.Clear();
                 for (int j = 0; j < structPoints.GetLength(1) - 1; j++)
                 {
-                    if (!structPoints[i, j].IsEmpty)
+                    if (!( structPoints[i, j].X==0 && structPoints[i, j].Y==0))
                     {
 
                         pointArr.Add(structPoints[i, j]);
@@ -241,10 +246,11 @@ namespace Graph
                 pointArr.Clear();
                 for (int j = 0; j < structPoints.GetLength(0) - 1; j++)
                 {
-                    if (!structPoints[i, j].IsEmpty)
+                    if (!(structPoints[i, j].X == 0 && structPoints[i, j].Y == 0))
                     {
 
                         pointArr.Add(structPoints[j, i]);
+                        if (pointsCB.Checked) g.DrawString("["+(structPoints[j,i].X).ToString()+";"+(structPoints[j,i].Y).ToString()+"]", new Font("Arial", 8f,FontStyle.Regular), new SolidBrush(coordColor), structPoints[j, i]);
                     }
                 }
                 if (pointArr.Count > 1)
@@ -440,15 +446,7 @@ namespace Graph
             FreeRunning = false;
         }
 
-        private void Form1_Scroll(object sender, ScrollEventArgs e)
-        {
-            a += e.NewValue - e.OldValue ;
-        }
-
-        private void button1_MouseDown(object sender, MouseEventArgs e)
-        {
-            a += e.Delta;
-        }
+      
 
         private void button4_Click(object sender, EventArgs e)
         {
@@ -471,6 +469,78 @@ namespace Graph
           
             
         }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            RestoreAngles();
+            DrawNet();
+        }
+
+
+        #region angleLabels
+        private void angleLabelA_MouseEnter(object sender, EventArgs e)
+        {
+            angleLabelA.BorderSides = ToolStripStatusLabelBorderSides.All;
+        }
+
+        private void angleLabelA_MouseHover(object sender, EventArgs e)
+        {
+            angleLabelA.BorderSides = ToolStripStatusLabelBorderSides.All;
+        }
+
+        private void angleLabelB_MouseEnter(object sender, EventArgs e)
+        {
+            angleLabelB.BorderSides = ToolStripStatusLabelBorderSides.All;
+        }
+
+        private void angleLabelB_MouseHover(object sender, EventArgs e)
+        {
+            angleLabelB.BorderSides = ToolStripStatusLabelBorderSides.All;
+        }
+
+        private void angleLabelC_MouseEnter(object sender, EventArgs e)
+        {
+            angleLabelC.BorderSides = ToolStripStatusLabelBorderSides.All;
+        }
+
+        private void angleLabelC_MouseHover(object sender, EventArgs e)
+        {
+            angleLabelC.BorderSides = ToolStripStatusLabelBorderSides.All;
+        }
+
+        private void angleLabelA_MouseLeave(object sender, EventArgs e)
+        {
+            angleLabelA.BorderSides = ToolStripStatusLabelBorderSides.None;
+        }
+
+        private void angleLabelB_MouseLeave(object sender, EventArgs e)
+        {
+            angleLabelB.BorderSides = ToolStripStatusLabelBorderSides.None;
+        }
+
+        private void angleLabelC_MouseLeave(object sender, EventArgs e)
+        {
+            angleLabelC.BorderSides = ToolStripStatusLabelBorderSides.None;
+        }
+
+
+        private void angleLabelA_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void angleLabelB_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void angleLabelC_Click(object sender, EventArgs e)
+        {
+
+        }
+        #endregion
+
+
 
 
     }
