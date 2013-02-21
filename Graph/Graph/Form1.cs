@@ -26,7 +26,7 @@ namespace Graph
 
 
         //double a=0, b=225, c=45;
-        public static Color graphColor = Color.Red, netColor = Color.Black, coordColor = Color.LightBlue;
+        public static Color graphColor = Color.Red, netColor = Color.DeepPink, coordColor = Color.DimGray;
         private void Form1_Load(object sender, EventArgs e)
         {
             a = 0;
@@ -258,29 +258,29 @@ namespace Graph
             //howmuchisdone = 0;
 
         }
-        void DrawStructure(int xMin, int yMin, int xMax, int yMax, int x0, int y0, int structStep, Graphics g)
-        {
-            // Point lastPainted = new Point();
-            //int myStep = Math.Max((int)step, 1);
+        //void DrawStructure(int xMin, int yMin, int xMax, int yMax, int x0, int y0, int structStep, Graphics g)
+        //{
+        //    // Point lastPainted = new Point();
+        //    //int myStep = Math.Max((int)step, 1);
 
 
 
-            for (double p = xMin; p <= xMax; p += step)
-            {
-                for (double q = yMin; q <= yMax; q += step)
-                {
-                    //howmuchisdone++;
-                    double funcValue = Function(p, q);
-                    int y = y0 - (int)funcValue;
-                    if (((int)p % structStep == 0 || (int)q % structStep == 0 || (int)funcValue == 0) && ((!double.IsNaN(funcValue))))
-                    {
-                        //  Color clr = Color.Black;
-                        Point newPoint = GetPoint(p, q);
-                        DrawPoint(x0 + newPoint.X, y0 - newPoint.Y, g, netColor);//(int)(x0 + p * Math.Cos(Math.PI / pina) - q * Math.Cos(Math.PI / pina)), (int)(y0 + p * Math.Sin(Math.PI / pina) + q * Math.Sin(Math.PI / pina) - funcValue), g, clr);//oldPoint.X * Math.Cos(Math.PI / 3) - oldPoint.Y * Math.Cos(Math.PI / 3)));//(int)Function(newPoint.X, newPoint.Y)); 
-                    }
-                }
-            }
-        }
+        //    for (double p = xMin; p <= xMax; p += step)
+        //    {
+        //        for (double q = yMin; q <= yMax; q += step)
+        //        {
+        //            //howmuchisdone++;
+        //            double funcValue = Function(p, q);
+        //            int y = y0 - (int)funcValue;
+        //            if (((int)p % structStep == 0 || (int)q % structStep == 0 || (int)funcValue == 0) && ((!double.IsNaN(funcValue))))
+        //            {
+        //                //  Color clr = Color.Black;
+        //                Point newPoint = GetPoint(p, q);
+        //                DrawPoint(x0 + newPoint.X, y0 - newPoint.Y, g, netColor);//(int)(x0 + p * Math.Cos(Math.PI / pina) - q * Math.Cos(Math.PI / pina)), (int)(y0 + p * Math.Sin(Math.PI / pina) + q * Math.Sin(Math.PI / pina) - funcValue), g, clr);//oldPoint.X * Math.Cos(Math.PI / 3) - oldPoint.Y * Math.Cos(Math.PI / 3)));//(int)Function(newPoint.X, newPoint.Y)); 
+        //            }
+        //        }
+        //    }
+        //}
         Point GetPoint(double p, double q)
         {
             double r = Function(p, q);
@@ -337,17 +337,8 @@ namespace Graph
                 button1.Enabled = true;
             }
         }
-        void stuff()
-        {
-            int x0 = pictureBox1.Width / 2, y0 = pictureBox1.Height / 2;
-            if (coordCB.Checked) DrawCoordinates(x0, y0, g);
-            if (graphCB.Checked) DrawGraph(-100, -100, 100, 100, x0, y0, g);
-            if (netCB.Checked) DrawStructure(-100, -100, 100, 100, x0, y0, 10, g);
-        }
-        Point ConvertCoordinates(Point srcPoint, int x0, int y0)
-        {
-            return new Point((int)(100 - srcPoint.X * Math.Cos(Math.PI / 6) + srcPoint.Y * Math.Cos(Math.PI / 6)), (int)(100 + srcPoint.X * Math.Sin(Math.PI / 6) + srcPoint.Y * Math.Sin(Math.PI / 6)));
-        }
+     
+      
         private void DrawPoint(int x, int y, Graphics g, Color clr)
         {
             Bitmap pixel = new Bitmap(1, 1);
@@ -457,6 +448,28 @@ namespace Graph
         private void button1_MouseDown(object sender, MouseEventArgs e)
         {
             a += e.Delta;
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Bitmap bmp = new Bitmap(pictureBox1.Image, new Size(pictureBox1.Width, pictureBox1.Height));
+                SaveFileDialog sfd = new SaveFileDialog();
+                sfd.AddExtension = true;
+                sfd.Filter = "PNG Image (*.png)|*.png";
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    bmp.Save(sfd.FileName, System.Drawing.Imaging.ImageFormat.Png);
+                }
+            }
+            catch (Exception)
+            {
+               
+               // throw;
+            }
+          
+            
         }
 
 

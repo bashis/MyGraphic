@@ -41,6 +41,7 @@
             this.angleLabelB = new System.Windows.Forms.ToolStripStatusLabel();
             this.angleLabelC = new System.Windows.Forms.ToolStripStatusLabel();
             this.pictureBox1 = new Graph.DoubleBufferedPictureBox();
+            this.button4 = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -169,9 +170,9 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.BackColor = System.Drawing.Color.White;
             this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBox1.Location = new System.Drawing.Point(67, 12);
@@ -182,11 +183,22 @@
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
             // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(12, 485);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(49, 45);
+            this.button4.TabIndex = 15;
+            this.button4.Text = "Save";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(806, 593);
+            this.Controls.Add(this.button4);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
@@ -224,6 +236,7 @@
         private System.Windows.Forms.ToolStripStatusLabel angleLabelA;
         private System.Windows.Forms.ToolStripStatusLabel angleLabelB;
         private System.Windows.Forms.ToolStripStatusLabel angleLabelC;
+        private System.Windows.Forms.Button button4;
     }
 }
 
