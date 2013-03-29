@@ -43,6 +43,8 @@
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.pointsCB = new System.Windows.Forms.CheckBox();
+            this.srcData = new System.Windows.Forms.TextBox();
+            this.button6 = new System.Windows.Forms.Button();
             this.pictureBox1 = new Graph.DoubleBufferedPictureBox();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -51,7 +53,7 @@
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button1.Location = new System.Drawing.Point(83, 534);
+            this.button1.Location = new System.Drawing.Point(83, 508);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(111, 23);
             this.button1.TabIndex = 1;
@@ -65,7 +67,7 @@
             this.graphCB.AutoSize = true;
             this.graphCB.Checked = true;
             this.graphCB.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.graphCB.Location = new System.Drawing.Point(200, 538);
+            this.graphCB.Location = new System.Drawing.Point(200, 512);
             this.graphCB.Name = "graphCB";
             this.graphCB.Size = new System.Drawing.Size(55, 17);
             this.graphCB.TabIndex = 2;
@@ -78,7 +80,7 @@
             this.netCB.AutoSize = true;
             this.netCB.Checked = true;
             this.netCB.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.netCB.Location = new System.Drawing.Point(261, 538);
+            this.netCB.Location = new System.Drawing.Point(261, 512);
             this.netCB.Name = "netCB";
             this.netCB.Size = new System.Drawing.Size(87, 17);
             this.netCB.TabIndex = 3;
@@ -91,7 +93,7 @@
             this.coordCB.AutoSize = true;
             this.coordCB.Checked = true;
             this.coordCB.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.coordCB.Location = new System.Drawing.Point(354, 538);
+            this.coordCB.Location = new System.Drawing.Point(354, 512);
             this.coordCB.Name = "coordCB";
             this.coordCB.Size = new System.Drawing.Size(82, 17);
             this.coordCB.TabIndex = 4;
@@ -101,7 +103,7 @@
             // textBox1
             // 
             this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Location = new System.Drawing.Point(694, 536);
+            this.textBox1.Location = new System.Drawing.Point(689, 510);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(100, 20);
             this.textBox1.TabIndex = 5;
@@ -111,7 +113,7 @@
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(656, 539);
+            this.label1.Location = new System.Drawing.Point(651, 513);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(32, 13);
             this.label1.TabIndex = 7;
@@ -143,7 +145,7 @@
             this.angleLabelA,
             this.angleLabelB,
             this.angleLabelC});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 571);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 543);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(806, 22);
             this.statusStrip1.TabIndex = 14;
@@ -181,7 +183,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(12, 485);
+            this.button4.Location = new System.Drawing.Point(12, 429);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(65, 45);
             this.button4.TabIndex = 15;
@@ -203,25 +205,46 @@
             // 
             this.pointsCB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.pointsCB.AutoSize = true;
-            this.pointsCB.Checked = true;
-            this.pointsCB.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.pointsCB.Location = new System.Drawing.Point(442, 538);
+            this.pointsCB.Location = new System.Drawing.Point(442, 512);
             this.pointsCB.Name = "pointsCB";
             this.pointsCB.Size = new System.Drawing.Size(55, 17);
             this.pointsCB.TabIndex = 17;
             this.pointsCB.Text = "Points";
             this.pointsCB.UseVisualStyleBackColor = true;
             // 
+            // srcData
+            // 
+            this.srcData.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.srcData.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.srcData.Location = new System.Drawing.Point(83, 480);
+            this.srcData.Name = "srcData";
+            this.srcData.Size = new System.Drawing.Size(270, 22);
+            this.srcData.TabIndex = 18;
+            this.srcData.Text = "sqrt(x*x+y*y)";
+            this.srcData.TextChanged += new System.EventHandler(this.srcData_TextChanged);
+            this.srcData.KeyUp += new System.Windows.Forms.KeyEventHandler(this.srcData_KeyUp);
+            // 
+            // button6
+            // 
+            this.button6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button6.Location = new System.Drawing.Point(359, 480);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(77, 23);
+            this.button6.TabIndex = 19;
+            this.button6.Text = "Apply";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
             // pictureBox1
             // 
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.BackColor = System.Drawing.Color.White;
             this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBox1.Location = new System.Drawing.Point(83, 12);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(711, 518);
+            this.pictureBox1.Size = new System.Drawing.Size(711, 462);
             this.pictureBox1.TabIndex = 6;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
@@ -231,7 +254,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(806, 593);
+            this.ClientSize = new System.Drawing.Size(806, 565);
+            this.Controls.Add(this.button6);
+            this.Controls.Add(this.srcData);
             this.Controls.Add(this.pointsCB);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
@@ -274,6 +299,8 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.CheckBox pointsCB;
+        private System.Windows.Forms.TextBox srcData;
+        private System.Windows.Forms.Button button6;
     }
 }
 

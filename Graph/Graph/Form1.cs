@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Threading;
+using MathParser;
+using MathParser.TextModel;
+
 namespace Graph
 {
     public partial class Form1 : Form
@@ -16,9 +19,9 @@ namespace Graph
             InitializeComponent();
         }
         Pen coordinatePen = Pens.Blue;
-        double xMin = -100, xMax = 100;
+     //   double xMin = -100, xMax = 100;
         //int y0;
-        double scaleX = 100, scaleY = 100;
+       // double scaleX = 100, scaleY = 100;
         double step = 0.05;
 
 
@@ -38,6 +41,8 @@ namespace Graph
             RestoreAngles();
             SpinTimer.Interval = 10;
             SpinTimer.Tick += new EventHandler(SpinTimer_Tick);
+            ChangeSourceData();
+            // s = textBox1.Text;
         }
         #region angles
         private double angleA;
@@ -120,17 +125,52 @@ namespace Graph
             return cos(b);
         }
         #endregion
+        Parser parser = new Parser();
+
+        delegate int del(int i);
+        //static void Main(string[] args)
+        //{
+        //    del myDelegate = x => x * x;
+        //    int j = myDelegate(5); //j = 25
+        //}
+
 
         double Function(double x, double y)
         {
             try
             {
-                return Math.Sqrt(10000- x * x -y * y);
+                string tmp;
+                tmp = s.ToLower().Replace("x", x.ToString()).Replace("y", y.ToString());
+              
+                var parsingResult = parser.Parse(tmp);
+                return (double)parsingResult.Evaluate();
+
             }
             catch (Exception)
             {
-                return double.NaN;
+                //return 0;
+                throw;
             }
+          
+            //try
+            //{
+            //    if (s.Length > 0)
+            //    {
+            //       return p.Parse(srcData.Text).//ToPolishInversedNotationString();
+            //    }
+            //}
+            //catch (ParserException exc)
+            //{
+            //    MessageBox.Show(exc.Message);
+            //}
+            //try
+            //{
+            //    return Math.Sqrt(10000- x * x -y * y);
+            //}
+            //catch (Exception)
+            //{
+            //    return double.NaN;
+            //}
         }
 
   
@@ -221,6 +261,8 @@ namespace Graph
             }
 
             List<Point> pointArr = new List<Point>();
+
+
             for (int i = 0; i < structPoints.GetLength(0) - 1; i++)
             {
                 pointArr.Clear();
@@ -246,7 +288,7 @@ namespace Graph
                 pointArr.Clear();
                 for (int j = 0; j < structPoints.GetLength(0) - 1; j++)
                 {
-                    if (!(structPoints[i, j].X == 0 && structPoints[i, j].Y == 0))
+                    if (!(structPoints[j, i].X == 0 && structPoints[j, i].Y == 0))
                     {
 
                         pointArr.Add(structPoints[j, i]);
@@ -381,15 +423,26 @@ namespace Graph
 
         void DrawNet()
         {
-            int x0 = pictureBox1.Width / 2, y0 = pictureBox1.Height / 2;
-            Bitmap result = new Bitmap(pictureBox1.Width, pictureBox1.Height);
-            g = Graphics.FromImage(result);
-            using (g)
+            try
             {
-                if (coordCB.Checked) DrawCoordinates(x0, y0, g);
-                if (netCB.Checked) DrawStructure2(-100, -100, 100, 100, x0, y0, 20, g);
+                int x0 = pictureBox1.Width / 2, y0 = pictureBox1.Height / 2;
+                Bitmap result = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+                g = Graphics.FromImage(result);
+                using (g)
+                {
+                    if (coordCB.Checked) DrawCoordinates(x0, y0, g);
+                    if (netCB.Checked) DrawStructure2(-100, -100, 100, 100, x0, y0, 20, g);
+                }
+                pictureBox1.Image = result;
             }
-            pictureBox1.Image = result;
+            catch (Exception)
+            {
+                FreeRunning = false;
+                MessageBox.Show("Ошибка парсера. Проверьте формулу.");
+               
+                //throw;
+            }
+            
 
         }
         int prevX, prevY;
@@ -398,6 +451,7 @@ namespace Graph
         {
               if (e.Button == MouseButtons.Left)
             {
+
                 c -= e.X - prevX;
                 b += e.Y - prevY;
                 DrawNet();
@@ -526,19 +580,61 @@ namespace Graph
 
         private void angleLabelA_Click(object sender, EventArgs e)
         {
-
+            NewAngleValueForm nvf = new NewAngleValueForm(a);
+            if (nvf.ShowDialog()==DialogResult.OK)
+            {
+                a = nvf.Value;
+                DrawNet();
+            }
         }
 
         private void angleLabelB_Click(object sender, EventArgs e)
         {
-
+            NewAngleValueForm nvf = new NewAngleValueForm(b);
+            if (nvf.ShowDialog() == DialogResult.OK)
+            {
+                b = nvf.Value;
+                DrawNet();
+            }
         }
 
         private void angleLabelC_Click(object sender, EventArgs e)
         {
-
+            NewAngleValueForm nvf = new NewAngleValueForm(c);
+            if (nvf.ShowDialog() == DialogResult.OK)
+            {
+                c = nvf.Value;
+                DrawNet();
+            }
         }
         #endregion
+
+      
+        string s;
+        private void button6_Click(object sender, EventArgs e)
+        {
+            ChangeSourceData();
+        }
+
+        private void srcData_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        void ChangeSourceData()
+        {
+            s = srcData.Text;
+            DrawNet();
+            
+        }
+        private void srcData_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                ChangeSourceData();
+            }
+
+        }
 
 
 
