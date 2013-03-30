@@ -14,12 +14,28 @@ namespace Graph
 {
     public partial class Form1 : Form
     {
+
+        struct PointValue
+        {
+           public double X, Y, Value;
+           public PointValue(double X, double Y)
+           {
+               this.X = X;
+               this.Y = Y;
+               this.Value = Function(X, Y);
+           }
+            
+        }
+        List<PointValue> ValueList=new List<PointValue>();
+
+
         public Form1()
         {
             InitializeComponent();
         }
         Pen coordinatePen = Pens.Blue;
-     //   double xMin = -100, xMax = 100;
+        int xMin = -100, xMax = 100;
+        int yMin=-100, yMax=100;
         //int y0;
        // double scaleX = 100, scaleY = 100;
         double step = 0.05;
@@ -35,13 +51,16 @@ namespace Graph
             b = -90;
             c = 0;
         }
+
+        //double[,] pointValues;//=new double[,];
         public static Color graphColor = Color.Red, netColor = Color.DeepPink, coordColor = Color.DimGray;
         private void Form1_Load(object sender, EventArgs e)
         {
+            ChangeSourceData();
             RestoreAngles();
             SpinTimer.Interval = 10;
             SpinTimer.Tick += new EventHandler(SpinTimer_Tick);
-            ChangeSourceData();
+          
             // s = textBox1.Text;
         }
         #region angles
@@ -125,7 +144,7 @@ namespace Graph
             return cos(b);
         }
         #endregion
-        Parser parser = new Parser();
+       static Parser parser = new Parser();
 
         delegate int del(int i);
         //static void Main(string[] args)
@@ -135,7 +154,7 @@ namespace Graph
         //}
 
 
-        double Function(double x, double y)
+        static double Function(double x, double y)
         {
             try
             {
@@ -148,29 +167,21 @@ namespace Graph
             }
             catch (Exception)
             {
-                //return 0;
                 throw;
             }
-          
-            //try
-            //{
-            //    if (s.Length > 0)
-            //    {
-            //       return p.Parse(srcData.Text).//ToPolishInversedNotationString();
-            //    }
-            //}
-            //catch (ParserException exc)
-            //{
-            //    MessageBox.Show(exc.Message);
-            //}
-            //try
-            //{
-            //    return Math.Sqrt(10000- x * x -y * y);
-            //}
-            //catch (Exception)
-            //{
-            //    return double.NaN;
-            //}
+        }
+        double GetValue(double x, double y)
+        {
+            for (int i = 0; i < ValueList.Count; i++)
+            {
+                if (ValueList[i].X==x && ValueList[i].Y==y)
+                {
+                    return ValueList[i].Value;
+                }
+            }
+            PointValue newValue = new PointValue(x,y);
+            ValueList.Add(newValue);
+            return newValue.Value;
         }
 
   
@@ -214,7 +225,7 @@ namespace Graph
            // }
         }
 
-        public void DrawGraph(int xMin, int yMin, int xMax, int yMax, int x0, int y0, Graphics g)
+        public void DrawGraph(double xMin, double yMin, double xMax, double yMax, int x0, int y0, Graphics g)
         {
             //howmuchisdone = 0;
             for (double p = xMin; p < xMax; p += step)
@@ -237,9 +248,9 @@ namespace Graph
 
         //int howmuchisdone = 0;
 
-        void DrawStructure2(int xMin, int yMin, int xMax, int yMax, int x0, int y0, int structStep, Graphics g)
+        void DrawStructure2(double xMin, double yMin, double xMax, double yMax, int x0, int y0, int structStep, Graphics g)
         {
-            Point[,] structPoints = new Point[(xMax - xMin) / structStep + 1, (yMax - yMin) / structStep + 1];
+            Point[,] structPoints = new Point[(int)(xMax - xMin) / structStep + 1, (int)(yMax - yMin) / structStep + 1];
             int pcnt = 0, qcnt = 0;
             for (double p = xMin; p <= xMax; p += structStep)
             {
@@ -331,7 +342,7 @@ namespace Graph
         //}
         Point GetPoint(double p, double q)
         {
-            double r = Function(p, q);
+            double r = GetValue(p, q);// Function(p, q);
             return new Point((int)(l1() * p + l2() * q + l3() * r), (int)(m1() * p + m2() * q + m3() * r));
 
         }
@@ -370,8 +381,8 @@ namespace Graph
                     button1.Enabled = false;
                     // Thread DrawGraphThread = new Thread(new ThreadStart(this.stuff));
                     if (coordCB.Checked) DrawCoordinates(x0, y0, g);
-                    if (graphCB.Checked) DrawGraph(-100, -100, 100, 100, x0, y0, g);
-                    if (netCB.Checked) DrawStructure2(-100, -100, 100, 100, x0, y0, 10, g);
+                    if (graphCB.Checked) DrawGraph(xMin, yMin, xMax, yMax, x0, y0, g);
+                    if (netCB.Checked) DrawStructure2(xMin, yMin, xMax, yMax, x0, y0, 10, g);
                 }
 
                 pictureBox1.Image = result;
@@ -431,16 +442,16 @@ namespace Graph
                 using (g)
                 {
                     if (coordCB.Checked) DrawCoordinates(x0, y0, g);
-                    if (netCB.Checked) DrawStructure2(-100, -100, 100, 100, x0, y0, 20, g);
+                    if (netCB.Checked) DrawStructure2(xMin, yMin, xMax, yMax, x0, y0, 20, g);
                 }
                 pictureBox1.Image = result;
             }
             catch (Exception)
             {
-                FreeRunning = false;
-                MessageBox.Show("Ошибка парсера. Проверьте формулу.");
+               FreeRunning = false;
+            MessageBox.Show("Ошибка парсера. Проверьте формулу.");
                
-                //throw;
+             //  throw;
             }
             
 
@@ -515,9 +526,9 @@ namespace Graph
                     bmp.Save(sfd.FileName, System.Drawing.Imaging.ImageFormat.Png);
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-               
+                MessageBox.Show(ex.Message.ToString());
                // throw;
             }
           
@@ -610,7 +621,7 @@ namespace Graph
         #endregion
 
       
-        string s;
+        static string s;
         private void button6_Click(object sender, EventArgs e)
         {
             ChangeSourceData();
@@ -623,8 +634,10 @@ namespace Graph
 
         void ChangeSourceData()
         {
+            ValueList.Clear();
             s = srcData.Text;
             DrawNet();
+          
             
         }
         private void srcData_KeyUp(object sender, KeyEventArgs e)
