@@ -40,13 +40,30 @@
             this.angleLabelA = new System.Windows.Forms.ToolStripStatusLabel();
             this.angleLabelB = new System.Windows.Forms.ToolStripStatusLabel();
             this.angleLabelC = new System.Windows.Forms.ToolStripStatusLabel();
+            this.pb = new System.Windows.Forms.ToolStripProgressBar();
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.pointsCB = new System.Windows.Forms.CheckBox();
             this.srcData = new System.Windows.Forms.TextBox();
             this.button6 = new System.Windows.Forms.Button();
+            this.XMinNUD = new System.Windows.Forms.NumericUpDown();
+            this.XMaxNUD = new System.Windows.Forms.NumericUpDown();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.YMinNUD = new System.Windows.Forms.NumericUpDown();
+            this.YMaxNUD = new System.Windows.Forms.NumericUpDown();
             this.pictureBox1 = new Graph.DoubleBufferedPictureBox();
             this.statusStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.XMinNUD)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.XMaxNUD)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.YMinNUD)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.YMaxNUD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -144,7 +161,8 @@
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.angleLabelA,
             this.angleLabelB,
-            this.angleLabelC});
+            this.angleLabelC,
+            this.pb});
             this.statusStrip1.Location = new System.Drawing.Point(0, 543);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(806, 22);
@@ -181,8 +199,14 @@
             this.angleLabelC.MouseLeave += new System.EventHandler(this.angleLabelC_MouseLeave);
             this.angleLabelC.MouseHover += new System.EventHandler(this.angleLabelC_MouseHover);
             // 
+            // pb
+            // 
+            this.pb.Name = "pb";
+            this.pb.Size = new System.Drawing.Size(100, 16);
+            // 
             // button4
             // 
+            this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.button4.Location = new System.Drawing.Point(12, 429);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(65, 45);
@@ -235,6 +259,160 @@
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
+            // XMinNUD
+            // 
+            this.XMinNUD.Location = new System.Drawing.Point(6, 32);
+            this.XMinNUD.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.XMinNUD.Minimum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            -2147483648});
+            this.XMinNUD.Name = "XMinNUD";
+            this.XMinNUD.Size = new System.Drawing.Size(53, 20);
+            this.XMinNUD.TabIndex = 20;
+            this.XMinNUD.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            -2147483648});
+            this.XMinNUD.ValueChanged += new System.EventHandler(this.XMinNUD_ValueChanged);
+            // 
+            // XMaxNUD
+            // 
+            this.XMaxNUD.Location = new System.Drawing.Point(6, 74);
+            this.XMaxNUD.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.XMaxNUD.Minimum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            -2147483648});
+            this.XMaxNUD.Name = "XMaxNUD";
+            this.XMaxNUD.Size = new System.Drawing.Size(53, 20);
+            this.XMaxNUD.TabIndex = 21;
+            this.XMaxNUD.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.XMaxNUD.ValueChanged += new System.EventHandler(this.XMaxNUD_ValueChanged);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.XMinNUD);
+            this.groupBox1.Controls.Add(this.XMaxNUD);
+            this.groupBox1.Location = new System.Drawing.Point(12, 165);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(65, 100);
+            this.groupBox1.TabIndex = 24;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "X";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(8, 55);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(27, 13);
+            this.label3.TabIndex = 23;
+            this.label3.Text = "Max";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(8, 16);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(24, 13);
+            this.label2.TabIndex = 22;
+            this.label2.Text = "Min";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.label4);
+            this.groupBox2.Controls.Add(this.label5);
+            this.groupBox2.Controls.Add(this.YMinNUD);
+            this.groupBox2.Controls.Add(this.YMaxNUD);
+            this.groupBox2.Location = new System.Drawing.Point(12, 271);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(65, 100);
+            this.groupBox2.TabIndex = 25;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Y";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(8, 55);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(27, 13);
+            this.label4.TabIndex = 23;
+            this.label4.Text = "Max";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(8, 16);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(24, 13);
+            this.label5.TabIndex = 22;
+            this.label5.Text = "Min";
+            // 
+            // YMinNUD
+            // 
+            this.YMinNUD.Location = new System.Drawing.Point(6, 32);
+            this.YMinNUD.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.YMinNUD.Minimum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            -2147483648});
+            this.YMinNUD.Name = "YMinNUD";
+            this.YMinNUD.Size = new System.Drawing.Size(53, 20);
+            this.YMinNUD.TabIndex = 20;
+            this.YMinNUD.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            -2147483648});
+            this.YMinNUD.ValueChanged += new System.EventHandler(this.YMinNUD_ValueChanged);
+            // 
+            // YMaxNUD
+            // 
+            this.YMaxNUD.Location = new System.Drawing.Point(6, 74);
+            this.YMaxNUD.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.YMaxNUD.Minimum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            -2147483648});
+            this.YMaxNUD.Name = "YMaxNUD";
+            this.YMaxNUD.Size = new System.Drawing.Size(53, 20);
+            this.YMaxNUD.TabIndex = 21;
+            this.YMaxNUD.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.YMaxNUD.ValueChanged += new System.EventHandler(this.YMaxNUD_ValueChanged);
+            // 
             // pictureBox1
             // 
             this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
@@ -255,6 +433,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(806, 565);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.srcData);
             this.Controls.Add(this.pointsCB);
@@ -270,11 +449,22 @@
             this.Controls.Add(this.netCB);
             this.Controls.Add(this.graphCB);
             this.Controls.Add(this.button1);
+            this.Controls.Add(this.groupBox1);
+            this.MinimumSize = new System.Drawing.Size(667, 552);
             this.Name = "Form1";
             this.Text = "FUCKING Graph Plotter";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.SizeChanged += new System.EventHandler(this.Form1_SizeChanged);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.XMinNUD)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.XMaxNUD)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.YMinNUD)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.YMaxNUD)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -301,6 +491,17 @@
         private System.Windows.Forms.CheckBox pointsCB;
         private System.Windows.Forms.TextBox srcData;
         private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.NumericUpDown XMinNUD;
+        private System.Windows.Forms.NumericUpDown XMaxNUD;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.NumericUpDown YMinNUD;
+        private System.Windows.Forms.NumericUpDown YMaxNUD;
+        private System.Windows.Forms.ToolStripProgressBar pb;
     }
 }
 

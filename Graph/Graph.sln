@@ -5,7 +5,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graph", "Graph\Graph.csproj
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AnalyzerInterface", "AnalyzerInterface\AnalyzerInterface.vcxproj", "{3A24E1FF-92BC-4445-833C-FB8962806860}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parser", "..\..\..\..\Downloads\SimpleMathParser v1.0\SimpleMathParser v1.0\Parser\Parser.csproj", "{B66BEACE-2567-4077-9DCB-4358AEE68C90}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parser", "SimpleMathParser v1.0\Parser\Parser.csproj", "{B66BEACE-2567-4077-9DCB-4358AEE68C90}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

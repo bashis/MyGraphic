@@ -70,6 +70,9 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormExtensions.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
     <Compile Include="NewAngleValueForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -110,13 +113,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\Downloads\SimpleMathParser v1.0\SimpleMathParser v1.0\Parser\Parser.csproj">
-      <Project>{B66BEACE-2567-4077-9DCB-4358AEE68C90}</Project>
-      <Name>Parser</Name>
-    </ProjectReference>
     <ProjectReference Include="..\AnalyzerInterface\AnalyzerInterface.vcxproj">
       <Project>{3A24E1FF-92BC-4445-833C-FB8962806860}</Project>
       <Name>AnalyzerInterface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SimpleMathParser v1.0\Parser\Parser.csproj">
+      <Project>{B66BEACE-2567-4077-9DCB-4358AEE68C90}</Project>
+      <Name>Parser</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
